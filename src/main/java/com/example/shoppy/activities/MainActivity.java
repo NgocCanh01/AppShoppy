@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         anhXa();//V1
         actionBar();//V2
         actionViewFlipper();//add QC cho viewFlipp
-        //Thay đổi của Main
+        //Thay đổi của Nhánh Mới
     }
 
     private void actionViewFlipper() {
