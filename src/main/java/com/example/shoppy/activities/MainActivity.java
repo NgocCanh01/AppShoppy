@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lvMain;
     DrawerLayout drawerLayoutMain;
     Button button;
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         anhXa();//V1
         actionBar();//V2
         actionViewFlipper();//add QC cho viewFlipp
+
+        //Them nhanh
     }
 
     private void actionViewFlipper() {
