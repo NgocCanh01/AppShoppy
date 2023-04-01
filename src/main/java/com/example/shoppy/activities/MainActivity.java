@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         actionViewFlipper();//add QC cho viewFlipp
 
         //Them nhanh
-        //B comment
     }
 
     private void actionViewFlipper() {
