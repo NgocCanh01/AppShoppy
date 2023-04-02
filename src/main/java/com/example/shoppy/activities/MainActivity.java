@@ -17,6 +17,8 @@ import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.example.shoppy.R;
+import com.example.shoppy.adapter.LoaiSpAdapter;
+import com.example.shoppy.model.LoaiSp;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -29,22 +31,23 @@ public class MainActivity extends AppCompatActivity {
     NavigationView nvMain;
     ListView lvMain;
     DrawerLayout drawerLayoutMain;
-    Button button;
-    ImageView imageView;
+    //STEP 2:
+    LoaiSpAdapter loaiSpAdapter;
+    List<LoaiSp> mangLoaiSps;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //STEP 1: SỬA MAINACTIVITY, GIAO DIỆN MAIN CHẠY QUẢNG CÁO, 2 FILE ANIMATION, THÊM THƯ VIỆN GLIDER, MINSDK -> 25
+        //STEP 2: TẠO ADAPTER CHO LISTVIEW CHỌN LOẠI SP: Sửa MainActivity, tạo 1 ADAPTER, 1 MODEL, 1 icon per_media
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         anhXa();//V1
         actionBar();//V2
         actionViewFlipper();//add QC cho viewFlipp
-
-
-        //STEP 1: SỬA MAINACTIVITY, GIAO DIỆN MAIN CHẠY QUẢNG CÁO, 2 FILE ANIMATION, THÊM THƯ VIỆN GLIDER, MINSDK -> 25
-
     }
 
     private void actionViewFlipper() {
+        //STEP 1:
         List<String> mangQuangCao= new ArrayList<>();
         mangQuangCao.add("http://mauweb.monamedia.net/thegioididong/wp-content/uploads/2017/12/banner-Le-hoi-phu-kien-800-300.png");
         mangQuangCao.add("http://mauweb.monamedia.net/thegioididong/wp-content/uploads/2017/12/banner-HC-Tra-Gop-800-300.png");
@@ -64,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
         vfMain.setInAnimation(slideIn);
         vfMain.setOutAnimation(slideOut);
 
-
-        //STEP 1: SỬA MAINACTIVITY, GIAO DIỆN MAIN CHẠY QUẢNG CÁO, 2 FILE ANIMATION, THÊM THƯ VIỆN GLIDER, MINSDK -> 25
     }
 
     private void actionBar() {
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void anhXa() {
+        //STEP 1:
+
         tbMain = findViewById(R.id.tbMain);
         vfMain = findViewById(R.id.vfMain);
         rcSanPham = findViewById(R.id.rcSanPham);
@@ -88,8 +91,14 @@ public class MainActivity extends AppCompatActivity {
         lvMain = findViewById(R.id.lvMain);
         drawerLayoutMain = findViewById(R.id.drawerLayoutMain);
 
+        //STEP 2:
+        //Khởi tạo list
+        mangLoaiSps = new ArrayList<>();
+        //Khởi tạo Adapter
+        loaiSpAdapter = new LoaiSpAdapter(getApplicationContext(),mangLoaiSps);
+        lvMain.setAdapter(loaiSpAdapter);
 
-        //STEP 1: SỬA MAINACTIVITY, GIAO DIỆN MAIN CHẠY QUẢNG CÁO, 2 FILE ANIMATION, THÊM THƯ VIỆN GLIDER, MINSDK -> 25
+
 
     }
 }
