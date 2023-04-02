@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
         anhXa();//V1
         actionBar();//V2
         actionViewFlipper();//add QC cho viewFlipp
-        //Thay doi cua nhanh moi
+
+
+        //STEP 1: SỬA MAINACTIVITY, GIAO DIỆN MAIN CHẠY QUẢNG CÁO, 2 FILE ANIMATION, THÊM THƯ VIỆN GLIDER, MINSDK -> 25
+
     }
 
     private void actionViewFlipper() {
@@ -60,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         Animation slideOut = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_right);
         vfMain.setInAnimation(slideIn);
         vfMain.setOutAnimation(slideOut);
+
+
+        //STEP 1: SỬA MAINACTIVITY, GIAO DIỆN MAIN CHẠY QUẢNG CÁO, 2 FILE ANIMATION, THÊM THƯ VIỆN GLIDER, MINSDK -> 25
     }
 
     private void actionBar() {
@@ -81,5 +87,9 @@ public class MainActivity extends AppCompatActivity {
         nvMain = findViewById(R.id.nvMain);
         lvMain = findViewById(R.id.lvMain);
         drawerLayoutMain = findViewById(R.id.drawerLayoutMain);
+
+
+        //STEP 1: SỬA MAINACTIVITY, GIAO DIỆN MAIN CHẠY QUẢNG CÁO, 2 FILE ANIMATION, THÊM THƯ VIỆN GLIDER, MINSDK -> 25
+
     }
 }
