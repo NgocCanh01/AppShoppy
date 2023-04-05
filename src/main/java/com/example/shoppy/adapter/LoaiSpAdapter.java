@@ -19,7 +19,7 @@ public class LoaiSpAdapter extends BaseAdapter {
     List<LoaiSp> array;
     Context context;
 
-    public LoaiSpAdapter(Context context,List<LoaiSp> array ) {
+    public LoaiSpAdapter(Context context, List<LoaiSp> array) {
         this.array = array;
         this.context = context;
     }
@@ -57,9 +57,12 @@ public class LoaiSpAdapter extends BaseAdapter {
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
-            viewHolder.textTenSp.setText(array.get(i).getTensanpham());
-            Glide.with(context).load(array.get(i).getHinhanh()).into(viewHolder.imgHinhAnh);
+//            viewHolder.textTenSp.setText(array.get(i).getTensanpham());
+//            Glide.with(context).load(array.get(i).getHinhanh()).into(viewHolder.imgHinhAnh);
         }
+        //STEP 4:
+        viewHolder.textTenSp.setText(array.get(i).getTensanpham());
+        Glide.with(context).load(array.get(i).getHinhanh()).into(viewHolder.imgHinhAnh);
         return view;
     }
 

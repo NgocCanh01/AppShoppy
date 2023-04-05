@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         //STEP 1: SỬA MAINACTIVITY, GIAO DIỆN MAIN CHẠY QUẢNG CÁO, 2 FILE ANIMATION, THÊM THƯ VIỆN GLIDER, MINSDK -> 25
         //STEP 2: TẠO ADAPTER CHO LISTVIEW CHỌN LOẠI SP: Sửa MainActivity, tạo 1 ADAPTER, 1 MODEL, 1 icon per_media
         //STEP 3: KẾT NỐI SERVER LẤY DATA:Cấp quyền, hàm ktra kết nối INTERNET, tạo retrofit,tạo class LoaiSpModel, tạo Util lấy link => lỗi api cần chọn rxjava
+        //STEP 4: ĐƯA DATA VÀO LISTVIEW LOẠI SP: sửa thông báo, tạo hàm onDestroy, getLoaiSanPham, lỗi lặp data LoaiSpAdapter, giao diện item_sp: kích thước, sửa data server
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //STEP 3:
@@ -70,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
 //        actionViewFlipper();//add QC cho viewFlipp
 
         //STEP 3:
-        if(isConnected(this)){
-            Toast.makeText(getApplicationContext(),"ok ket noi",Toast.LENGTH_LONG).show();
+        if (isConnected(this)) {
+//            Toast.makeText(getApplicationContext(),"ok ket noi",Toast.LENGTH_LONG).show();
             actionViewFlipper();//add QC cho viewFlipp
             //Hàm kết nối file php lấy tên loại sp
             getLoaiSanPham();
-        }else{
-            Toast.makeText(getApplicationContext(),"LOI KET NOI",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Không có internet, vui lòng kết nối!!!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -86,8 +87,13 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         loaiSpModel -> {
-                            if(loaiSpModel.isSuccess()){
-                                Toast.makeText(getApplicationContext(),loaiSpModel.getResult().get(0).getTensanpham(),Toast.LENGTH_LONG).show();
+                            if (loaiSpModel.isSuccess()) {
+//                                Toast.makeText(getApplicationContext(),loaiSpModel.getResult().get(0).getTensanpham(),Toast.LENGTH_LONG).show();
+                                //STEP 4
+                                //Thêm data cho list view
+                                mangLoaiSps = loaiSpModel.getResult();//nối data từ loại sp model vào mangLoaiSp
+                                loaiSpAdapter = new LoaiSpAdapter(getApplicationContext(), mangLoaiSps);
+                                lvMain.setAdapter(loaiSpAdapter);
                             }
                         }
 
@@ -142,9 +148,9 @@ public class MainActivity extends AppCompatActivity {
         //STEP 2:
         //Khởi tạo list
         mangLoaiSps = new ArrayList<>();
-        //Khởi tạo Adapter
-        loaiSpAdapter = new LoaiSpAdapter(getApplicationContext(), mangLoaiSps);
-        lvMain.setAdapter(loaiSpAdapter);
+//        //Khởi tạo Adapter
+//        loaiSpAdapter = new LoaiSpAdapter(getApplicationContext(), mangLoaiSps);
+//        lvMain.setAdapter(loaiSpAdapter);
     }
 
     //STEP 3:
@@ -153,10 +159,16 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobile = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if ((wifi != null && wifi.isConnected()) ||(mobile != null && mobile.isConnected())) {
+        if ((wifi != null && wifi.isConnected()) || (mobile != null && mobile.isConnected())) {
             return true;
-        }else{
+        } else {
             return false;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
     }
 }
