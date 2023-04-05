@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         //STEP 2: TẠO ADAPTER CHO LISTVIEW CHỌN LOẠI SP: Sửa MainActivity, tạo 1 ADAPTER, 1 MODEL, 1 icon per_media
         //STEP 3: KẾT NỐI SERVER LẤY DATA:Cấp quyền, hàm ktra kết nối INTERNET, tạo retrofit,tạo class LoaiSpModel, tạo Util lấy link => lỗi api cần chọn rxjava
         //STEP 4: ĐƯA DATA VÀO LISTVIEW LOẠI SP: sửa thông báo, tạo hàm onDestroy, getLoaiSanPham, lỗi lặp data LoaiSpAdapter, giao diện item_sp: kích thước, sửa data server
+        //STEP 5: ĐỔI ICON APP, THÊM FILE getspmoi.php. TẠO ADAPTER CHO RECYCLEVIEW Ở MÀN CHÍNH: layout item_spmoi, class SanPhamMoiAdapter,class SanPhamMoi và Model spmoi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //STEP 3:
