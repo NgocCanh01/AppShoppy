@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="8dp"
     app:cardCornerRadius="4dp"
-    android:layout_width="190dp"
-    android:layout_marginTop="@dimen/_5ssp"
-    android:layout_marginLeft="@dimen/_5ssp"
-    android:layout_marginRight="@dimen/_1ssp"
-    android:layout_height="wrap_content">
+    android:layout_width="160dp"
+    android:layout_height="match_parent">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <ImageView
+            android:src="@drawable/iconnew"
+            android:layout_gravity="top|right"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -39,11 +40,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-        <ImageView
-            android:src="@drawable/iconnew"
-            android:layout_gravity="top|right"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
     </FrameLayout>
 
 </androidx.cardview.widget.CardView>
